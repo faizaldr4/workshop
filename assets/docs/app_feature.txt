@@ -1,0 +1,149 @@
+1. **Login dengan autentikasi dua faktor**
+   - Deskripsi: Fitur ini memungkinkan pengguna untuk masuk dengan keamanan tambahan melalui kode verifikasi.
+   - URL: `/login`
+   - Parameter: `username`, `password`, `2fa_code`
+
+2. **Pendaftaran pengguna baru**
+   - Deskripsi: Pengguna baru dapat mendaftar dengan mengisi formulir pendaftaran.
+   - URL: `/register`
+   - Parameter: `username`, `email`, `password`
+
+3. **Reset kata sandi**
+   - Deskripsi: Pengguna dapat mereset kata sandi mereka jika lupa.
+   - URL: `/reset-password`
+   - Parameter: `email`
+
+4. **Profil pengguna**
+   - Deskripsi: Pengguna dapat melihat dan mengedit profil mereka.
+   - URL: `/profile`
+   - Parameter: `user_id`
+
+5. **Notifikasi push**
+   - Deskripsi: Mengirim notifikasi push ke perangkat pengguna.
+   - URL: `/notifications`
+   - Parameter: `user_id`, `message`
+
+6. **Pencarian lanjutan**
+   - Deskripsi: Fitur pencarian dengan filter dan opsi lanjutan.
+   - URL: `/search`
+   - Parameter: `query`, `filters`
+
+7. **Filter pencarian**
+   - Deskripsi: Menyaring hasil pencarian berdasarkan kriteria tertentu.
+   - URL: `/search/filters`
+   - Parameter: `category`, `price_range`
+
+8. **Favoritkan item**
+   - Deskripsi: Pengguna dapat menandai item sebagai favorit.
+   - URL: `/favorites`
+   - Parameter: `user_id`, `item_id`
+
+9. **Keranjang belanja**
+   - Deskripsi: Fitur untuk menambahkan dan mengelola item dalam keranjang belanja.
+   - URL: `/cart`
+   - Parameter: `user_id`, `item_id`, `quantity`
+
+10. **Pembayaran online**
+    - Deskripsi: Memproses pembayaran melalui berbagai metode pembayaran.
+    - URL: `/checkout`
+    - Parameter: `user_id`, `payment_method`, `amount`
+
+11. **Riwayat transaksi**
+    - Deskripsi: Melihat riwayat transaksi pengguna.
+    - URL: `/transactions`
+    - Parameter: `user_id`
+
+12. **Pelacakan pesanan**
+    - Deskripsi: Melacak status pesanan pengguna.
+    - URL: `/order-tracking`
+    - Parameter: `order_id`
+
+13. **Ulasan dan rating produk**
+    - Deskripsi: Pengguna dapat memberikan ulasan dan rating untuk produk.
+    - URL: `/reviews`
+    - Parameter: `user_id`, `product_id`, `rating`, `review`
+
+14. **Chat dukungan pelanggan**
+    - Deskripsi: Fitur chat untuk berkomunikasi dengan tim dukungan pelanggan.
+    - URL: `/support/chat`
+    - Parameter: `user_id`, `message`
+
+15. **Integrasi media sosial**
+    - Deskripsi: Menghubungkan akun pengguna dengan media sosial.
+    - URL: `/social-connect`
+    - Parameter: `user_id`, `social_media`
+
+16. **Berbagi konten**
+    - Deskripsi: Pengguna dapat berbagi konten ke media sosial.
+    - URL: `/share`
+    - Parameter: `user_id`, `content_id`, `platform`
+
+17. **Sinkronisasi data**
+    - Deskripsi: Menyinkronkan data pengguna di berbagai perangkat.
+    - URL: `/sync`
+    - Parameter: `user_id`, `device_id`
+
+18. **Mode gelap**
+    - Deskripsi: Mengaktifkan mode gelap untuk antarmuka aplikasi.
+    - URL: `/settings/theme`
+    - Parameter: `user_id`, `theme`
+
+19. **Pengaturan privasi**
+    - Deskripsi: Mengelola pengaturan privasi pengguna.
+    - URL: `/settings/privacy`
+    - Parameter: `user_id`, `privacy_settings`
+
+20. **Pengingat dan alarm**
+    - Deskripsi: Mengatur pengingat dan alarm untuk berbagai kegiatan.
+    - URL: `/reminders`
+    - Parameter: `user_id`, `reminder_time`, `message`
+
+21. **Kalender acara**
+    - Deskripsi: Melihat dan mengelola acara di kalender.
+    - URL: `/calendar`
+    - Parameter: `user_id`, `event_id`, `event_details`
+
+22. **Peta dan navigasi**
+    - Deskripsi: Menyediakan peta dan navigasi untuk lokasi tertentu.
+    - URL: `/maps`
+    - Parameter: `location`, `destination`
+
+23. **Pemutar video**
+    - Deskripsi: Memutar video yang diunggah atau diakses oleh pengguna.
+    - URL: `/video-player`
+    - Parameter: `video_id`
+
+24. **Pemutar musik**
+    - Deskripsi: Memutar musik yang diunggah atau diakses oleh pengguna.
+    - URL: `/music-player`
+    - Parameter: `track_id`
+
+25. **Galeri foto**
+    - Deskripsi: Menampilkan galeri foto pengguna.
+    - URL: `/gallery`
+    - Parameter: `user_id`, `album_id`
+
+26. **Pembaruan otomatis**
+    - Deskripsi: Memperbarui aplikasi secara otomatis.
+    - URL: `/update`
+    - Parameter: `version`
+
+27. **Backup dan restore data**
+    - Deskripsi: Membuat cadangan dan mengembalikan data pengguna.
+    - URL: `/backup`
+    - Parameter: `user_id`, `backup_id`
+
+28. **Analitik pengguna**
+    - Deskripsi: Melacak dan menganalisis aktivitas pengguna.
+    - URL: `/analytics`
+    - Parameter: `user_id`, `activity_data`
+
+29. **Laporan bug**
+    - Deskripsi: Mengirim laporan bug ke tim pengembang.
+    - URL: `/bug-report`
+    - Parameter: `user_id`, `bug_description`
+
+30. **FAQ dan bantuan**
+    - Deskripsi: Menyediakan jawaban atas pertanyaan umum dan bantuan.
+    - URL: `/faq`
+    - Parameter: `query`
