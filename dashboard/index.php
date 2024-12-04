@@ -1,11 +1,17 @@
 <?php
 session_start();
-if (!isset($_SESSION['logged_in'])) {
-    header('Location: ../auth/login.php');
-    exit;
-}
+// Celah Keamanan bypass Skema Autentikasi
+// if (!isset($_SESSION['logged_in'])) {
+//     header('Location: ../auth/login.php');
+//     exit;
+// }
 
 $role = $_SESSION['role_name'];
+
+$file_name = "../assets/upload/$_SESSION[username].jpg";
+$file_name_default = "../assets/img/avatar.png";
+
+$photo_profile = file_exists($file_name) ? $file_name : $file_name_default;
 ?>
 <!DOCTYPE html>
 <html lang="en"> <!--begin::Head-->
@@ -27,6 +33,7 @@ $role = $_SESSION['role_name'];
 </head> <!--end::Head--> <!--begin::Body-->
 
 <body class="layout-fixed sidebar-expand-lg bg-body-tertiary"> <!--begin::App Wrapper-->
+
     <div class="app-wrapper"> <!--begin::Header-->
         <nav class="app-header navbar navbar-expand bg-body"> <!--begin::Container-->
             <div class="container-fluid"> <!--begin::Start Navbar Links-->
@@ -83,9 +90,9 @@ $role = $_SESSION['role_name'];
                         </div>
                     </li> <!--end::Notifications Dropdown Menu--> <!--begin::Fullscreen Toggle-->
                     <li class="nav-item"> <a class="nav-link" href="#" data-lte-toggle="fullscreen"> <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i> <i data-lte-icon="minimize" class="bi bi-fullscreen-exit" style="display: none;"></i> </a> </li> <!--end::Fullscreen Toggle--> <!--begin::User Menu Dropdown-->
-                    <li class="nav-item dropdown user-menu"> <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <img src="../assets/img/user2-160x160.jpg" class="user-image rounded-circle shadow" alt="User Image"> <span class="d-none d-md-inline"><?= strtoupper($_SESSION['username']) ?></span> </a>
+                    <li class="nav-item dropdown user-menu"> <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"> <img src="<?= $photo_profile ?>" class="user-image rounded-circle shadow" alt="User Image"> <span class="d-none d-md-inline"><?= strtoupper($_SESSION['username']) ?></span> </a>
                         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end"> <!--begin::User Image-->
-                            <li class="user-header text-bg-primary"> <img src="../assets/img/user2-160x160.jpg" class="rounded-circle shadow" alt="User Image">
+                            <li class="user-header text-bg-primary"> <img src="<?= $photo_profile ?>" class="rounded-circle shadow" alt="User Image">
                                 <p>
                                     <?= strtoupper($_SESSION['username']) ?> - WEB DEVELOPER
                                     <small>Member since March 2018</small>
@@ -98,7 +105,7 @@ $role = $_SESSION['role_name'];
                                     <div class="col-4 text-center"> <a href="#">Friends</a> </div>
                                 </div> <!--end::Row-->
                             </li> <!--end::Menu Body--> <!--begin::Menu Footer-->
-                            <li class="user-footer"> <a href="#" class="btn btn-default btn-flat">Profile</a> <a href="../auth/logout.php" class="btn btn-default btn-flat float-end">Sign out</a> </li> <!--end::Menu Footer-->
+                            <li class="user-footer"> <a href="http://localhost/workshop/dashboard/index.php?page=../menu/profile" class="btn btn-default btn-flat">Profile</a> <a href="../auth/logout.php" class="btn btn-default btn-flat float-end">Sign out</a> </li> <!--end::Menu Footer-->
                         </ul>
                     </li> <!--end::User Menu Dropdown-->
                 </ul> <!--end::End Navbar Links-->
@@ -120,40 +127,44 @@ $role = $_SESSION['role_name'];
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item"> <a href="./index.html" class="nav-link active"> <i class="nav-icon bi bi-circle"></i>
+                                <li class="nav-item"> <a href="./index.php?page=admin" class="nav-link active"> <i class="nav-icon bi bi-circle"></i>
                                         <p>Admin Page</p>
                                     </a> </li>
                             </ul>
                         </li>
-                        <li class="nav-header">DOCUMENTATIONS</li>
-                        <li class="nav-item"> <a href="./get_file.php" class="nav-link"> <i class="nav-icon bi bi-download"></i>
+                        <li class="nav-header">ALL USER</li>
+                        <li class="nav-item"> <a href="./index.php?page=../menu/get_file" class="nav-link"> <i class="nav-icon bi bi-download"></i>
+                                <p>Show Page</p>
+                            </a> </li>
+                        <li class="nav-item"> <a href="./index.php?page=../menu/app_feature" class="nav-link"> <i class="nav-icon bi bi-grip-horizontal"></i>
                                 <p>App Feature</p>
                             </a> </li>
-                        <li class="nav-item"> <a href="./docs/layout.html" class="nav-link"> <i class="nav-icon bi bi-grip-horizontal"></i>
-                                <p>How ToDo</p>
+                        <li class="nav-item"> <a href="./index.php?page=../menu/view_pdf" class="nav-link"> <i class="nav-icon bi bi-grip-horizontal"></i>
+                                <p>Tampil PDF</p>
                             </a> </li>
-                        <li class="nav-item"> <a href="./docs/color-mode.html" class="nav-link"> <i class="nav-icon bi bi-star-half"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-star-half"></i>
                                 <p>Color Mode</p>
                             </a> </li>
 
-                        <li class="nav-item"> <a href="./docs/browser-support.html" class="nav-link"> <i class="nav-icon bi bi-browser-edge"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-browser-edge"></i>
                                 <p>Browser Support</p>
                             </a> </li>
-                        <li class="nav-item"> <a href="./docs/faq.html" class="nav-link"> <i class="nav-icon bi bi-question-circle-fill"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-question-circle-fill"></i>
                                 <p>FAQ</p>
                             </a> </li>
-                        <li class="nav-item"> <a href="./docs/license.html" class="nav-link"> <i class="nav-icon bi bi-patch-check-fill"></i>
+                        <li class="nav-item"> <a href="#" class="nav-link"> <i class="nav-icon bi bi-patch-check-fill"></i>
                                 <p>License</p>
                             </a> </li>
                         <?php //} 
                         ?>
+
                     </ul> <!--end::Sidebar Menu-->
                 </nav>
             </div> <!--end::Sidebar Wrapper-->
         </aside> <!--end::Sidebar--> <!--begin::App Main-->
         <main class="app-main"> <!--begin::App Content Header-->
             <div class="container">
-                <h1>SELAMAT DATANG <?= strtoupper($_GET['page']) ?></h1>
+                <h1>SELAMAT DATANG, <?= strtoupper($_SESSION['username']) ?></h1>
             </div>
             <!-- Celah Keamanan -->
 

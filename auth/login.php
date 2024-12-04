@@ -1,13 +1,33 @@
 <?php
 session_start();
+
 if (isset($_SESSION['logged_in'])) {
     $url_target = '../dashboard/index.php?page=' . $_SESSION['role_name'];
     header("Location: $url_target");
-    exit;
+    exit();
+} else {
+    session_unset();
+    session_destroy();
+
+    // Mengambil parameter cookie sesi saat ini
+    $params = session_get_cookie_params();
+    
+    // Mengatur ulang cookie sesi untuk menghapusnya dari browser
+    setcookie(
+        session_name(),    // Nama cookie sesi
+        '',                // Nilai cookie (kosong)
+        time() - 42000,    // Waktu kedaluwarsa (set ke waktu lampau)
+        $params["path"],   // Jalur cookie
+        $params["domain"], // Domain cookie
+        $params["secure"], // Cookie hanya dikirim melalui HTTPS
+        $params["httponly"] // Cookie hanya dapat diakses melalui HTTP(S)
+    );
+    
+    session_abort();
 }
 
 // $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
-// Solusi Celah Keamanan Server-Side Request Forgery (SSRF) (OTG-INTROS-001)
+// Solusi Celah Keamanan Server-Side Request Forgery (SSRF)
 
 ?>
 
@@ -30,7 +50,8 @@ if (isset($_SESSION['logged_in'])) {
                 <p class="login-box-msg">Sign in</p>
 
                 <form action="check_login.php" method="post">
-                    <input type="hidden" name="csrf_token" value="<?=$_SESSION['csrf_token']?>">
+                    <!-- Solusi Celah Keamanan Server-Side Request Forgery (SSRF) -->
+                    <!-- <input type="hidden" name="csrf_token" value="<?=/*$_SESSION['csrf_token']*/""?>"> -->
                     <div class="input-group mb-3">
                         <input type="text" name="username" class="form-control" placeholder="Username">
                         <div class="input-group-append">
