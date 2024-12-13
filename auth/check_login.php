@@ -46,6 +46,7 @@ if ($result->num_rows == 1) {
     $_SESSION['logged_in'] = true;
     $_SESSION['username'] = $username;
     $_SESSION['role_name'] = $row['role_name'];
+    // $_SESSION['IP'] = $_SERVER['REMOTE_ADDR'];
 
     // Mengumpulkan token sesi untuk pengguna
     // if (!isset($_SESSION['token'])) {
